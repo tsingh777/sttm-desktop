@@ -228,26 +228,26 @@ function createSettingsPage(userPrefs) {
             if (userPrefs[catKey][settingKey][option]) {
               switchListAttrs.checked = true;
             }
-            let optionLabel = setting.options[option];
-            let subLabel = false;
-            if (typeof setting.options[option] === 'object') {
-              optionLabel = setting.options[option].label;
-              subLabel = setting.options[option].subLabel;
-            }
+
+            const label = typeof setting.options[option] === 'object' ? setting.options[option].label : setting.options[option];
+            const message = typeof setting.options[option] === 'object' ? setting.options[option].message : '';
+            const id = typeof setting.options[option] === 'object' ? `#${setting.options[option].id}` : '';
             switchList.appendChild(
-              h('li',
+              h(`li${id}`,
                 [
-                  h('span', optionLabel),
+                  h('span', label),
                   h('div.switch',
                     [
                       h(`input#${optionId}`,
                         switchListAttrs),
-                      h('label',
-                        {
-                          htmlFor: optionId })])]));
-            if (subLabel) {
-              switchList.appendChild(h('div.sub-label', subLabel));
-            }
+
+                      h('label', { htmlFor: optionId }),
+                    ],
+                  ),
+                  h('div.message', message),
+                ],
+              ),
+            );
           });
           settingCat.appendChild(switchList);
           break;
@@ -270,6 +270,7 @@ module.exports = {
     document.querySelector('#menu-page').appendChild(this.settingsPage);
     addDisplayTab();
     this.applySettings();
+    document.body.classList.add(store.get('userPrefs.app.theme'));
   },
 
   applySettings(prefs = false) {
