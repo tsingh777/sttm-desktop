@@ -72,7 +72,8 @@
           "autoplay": "Auto Play",
           "livefeed": {
             "id": "livefeed",
-            "label": "Live Feed Text Files"
+            "label": "Live Feed Text Files",
+            "message": "lorem ipsum"
           }
         }
       },
