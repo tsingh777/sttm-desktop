@@ -9,3 +9,4 @@ data.db
 *.provisionprofile
 npm-debug.log*
 .idea/
+screenshots/

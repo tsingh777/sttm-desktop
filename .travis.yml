@@ -19,7 +19,7 @@ before_install:
   -in id_rsa.enc -out packaging/id_rsa -d; fi
 script:
 - if [ "$TRAVIS_BRANCH" = "release" ]; then
-    npm test && npm run dist:mac;
+    npm run lint && npm run dist:mac;
   else
-    npm test;
+    npm run lint;
   fi
