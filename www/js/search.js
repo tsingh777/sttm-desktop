@@ -292,7 +292,7 @@ const sources = {
 };
 
 // Close the KB if anywhere is clicked besides anything in .search-div
-document.body.addEventListener('click', e => {
+document.getElementById('app').addEventListener('click', e => {
   const { target } = e;
   if (
     document.querySelector('.search-div') &&
@@ -414,13 +414,12 @@ module.exports = {
       this.$search.classList.remove('roman');
       this.$search.classList.add('gurmukhi');
     }
-    document.body.classList.remove(
-      'searchResults_translationEnglish',
-      'searchResults_transliteration',
-    );
+    document
+      .getElementById('app')
+      .classList.remove('searchResults_translationEnglish', 'searchResults_transliteration');
     switch (value) {
       case 3:
-        document.body.classList.add('searchResults_translationEnglish');
+        document.getElementById('app').classList.add('searchResults_translationEnglish');
         break;
       default:
         break;
@@ -576,7 +575,7 @@ module.exports = {
   },
 
   clickResult(e, ShabadID, LineID, Line) {
-    document.body.classList.remove('home');
+    document.getElementById('app').classList.remove('home');
     this.closeGurmukhiKB();
     const sessionItem = h(
       `li#session-${ShabadID}`,
@@ -605,7 +604,7 @@ module.exports = {
     // add the line to the top of the session block
     this.$session.insertBefore(sessionItem, this.$session.firstChild);
     // are we in APV
-    const apv = document.body.classList.contains('akhandpaatt');
+    const apv = document.getElementById('app').classList.contains('akhandpaatt');
     // load the Shabad into the controller
     this.loadShabad(ShabadID, LineID, apv);
     // scroll the session block to the top to see the highlighted line
@@ -754,7 +753,7 @@ module.exports = {
     const shabadID = ShabadID || (rows[0].Shabads ? rows[0].Shabads[0].ShabadID : '');
     const lineIndex = rows.findIndex(row => row.ID === lineID);
     const shabad = this.$shabad;
-    const apv = document.body.classList.contains('akhandpaatt');
+    const apv = document.getElementById('app').classList.contains('akhandpaatt');
 
     // if the line clicked is further than throughput (in searches) then load until that line
     let throughput = 40;
@@ -873,10 +872,13 @@ module.exports = {
 
   checkAutoPlay(LineID = null) {
     clearTimeout(autoplaytimer);
-    if (LineID === null && document.body.querySelector('#shabad li')) {
-      document.body.querySelector('#shabad .panktee.current').click();
+    if (LineID === null && document.getElementById('app').querySelector('#shabad li')) {
+      document
+        .getElementById('app')
+        .querySelector('#shabad .panktee.current')
+        .click();
     }
-    const bodyClassList = document.body.classList;
+    const bodyClassList = document.getElementById('app').classList;
     const delay = [...bodyClassList]
       .find(value => /^autoplayTimer-/.test(value))
       .replace('autoplayTimer-', '');

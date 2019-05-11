@@ -51,7 +51,7 @@
         _bindEvents.call(this);
 
         // insert modal in dom
-        document.body.insertBefore(this.modal, document.body.firstChild);
+        document.getElementById('app').insertBefore(this.modal, document.getElementById('app').firstChild);
 
         if (this.opts.footer) {
             this.addFooter();
@@ -90,8 +90,8 @@
 
         // prevent double scroll
         this._scrollPosition = window.pageYOffset;
-        document.body.classList.add('tingle-enabled');
-        document.body.style.top = -this._scrollPosition + 'px';
+        document.getElementById('app').classList.add('tingle-enabled');
+        document.getElementById('app').style.top = -this._scrollPosition + 'px';
 
         // sticky footer
         this.setStickyFooter(this.opts.stickyFooter);
@@ -131,9 +131,9 @@
             if (!close) return;
         }
 
-        document.body.classList.remove('tingle-enabled');
+        document.getElementById('app').classList.remove('tingle-enabled');
         window.scrollTo(0, this._scrollPosition);
-        document.body.style.top = null;
+        document.getElementById('app').style.top = null;
 
         this.modal.classList.remove('tingle-modal--visible');
 

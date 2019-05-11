@@ -17,15 +17,15 @@
   }
 }
 
-body.checking-for-update .checking-for-update,
-body.updating .updating,
-body.update-error .update-error,
-body.no-update .no-update,
-body.update-ready .update-ready {
+#app.checking-for-update .checking-for-update,
+#app.updating .updating,
+#app.update-error .update-error,
+#app.no-update .no-update,
+#app.update-ready .update-ready {
   display: initial;
 }
 
-body.no-update {
+#app.no-update {
   .checking-for-update {
     display: none;
   }

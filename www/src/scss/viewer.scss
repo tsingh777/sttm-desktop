@@ -1,6 +1,11 @@
 $viewer-gurmukhi-font-family: 'gurbaniakharthick';
 $viewer-padding: 30px;
 
+body {
+  height: 100%;
+  margin: 0;
+}
+
 /* Toggle vishraam settings based on if vishraams are visible */
 #settings {
   .block-list {
@@ -86,7 +91,7 @@ $viewer-padding: 30px;
 }
 
 html,
-body {
+#app {
   height: 100%;
   scroll-behavior: smooth;
 }
@@ -95,7 +100,7 @@ html {
   cursor: default;
 }
 
-body {
+#app {
   background-attachment: fixed;
   background-position: center center;
   background-repeat: no-repeat;

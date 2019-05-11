@@ -30,7 +30,7 @@ const apvCur = {};
 const decks = {};
 let currentShabad;
 const $message = document.getElementById('message');
-const $body = document.body;
+const $body = document.getElementById('app');
 const $viewer = document.getElementById('viewer');
 const $scroll = window;
 
@@ -125,11 +125,11 @@ global.platform.ipc.on('stop-cast', () => {
 
 global.platform.ipc.on('is-webview', () => {
   isWebView = true;
-  document.body.classList.add('webview');
+  document.getElementById('app').classList.add('webview');
 });
 
 global.platform.ipc.on('clear-apv', () => {
-  apv = document.body.classList.contains('akhandpaatt');
+  apv = document.getElementById('app').classList.contains('akhandpaatt');
   if (apv) {
     hideDecks();
   }
@@ -145,12 +145,12 @@ global.platform.ipc.on('clear-apv', () => {
 });
 
 global.platform.ipc.on('show-line', (event, data) => {
-  apv = document.body.classList.contains('akhandpaatt');
+  apv = document.getElementById('app').classList.contains('akhandpaatt');
   showLine(data.shabadID, data.lineID, data.rows, data.mode);
 });
 
 global.platform.ipc.on('show-ang', (event, data) => {
-  apv = document.body.classList.contains('akhandpaatt');
+  apv = document.getElementById('app').classList.contains('akhandpaatt');
   showAng(data.PageNo, data.SourceID);
 });
 
@@ -392,7 +392,7 @@ const showLine = (ShabadID, LineID, rows, mode) => {
         Object.assign(decks[ShabadID], shabad);
         break;
       case 'click':
-        /* if you click on verse when message is open (announcement, blank, waheguru) 
+        /* if you click on verse when message is open (announcement, blank, waheguru)
         it should hide the message deck and show the shabad deck */
         if ($message.classList.contains('active')) {
           $message.classList.remove('active');

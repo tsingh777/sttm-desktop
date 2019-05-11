@@ -134,7 +134,7 @@ const swatchFactory = (themeInstance, isCustom) =>
       },
       onclick: () => {
         try {
-          document.body.classList.remove(store.getUserPref('app.theme'));
+          document.getElementById('app').classList.remove(store.getUserPref('app.theme'));
           store.setUserPref('app.theme', themeInstance.key);
           if (!isCustom) {
             store.setUserPref('app.themebg', {
@@ -142,7 +142,7 @@ const swatchFactory = (themeInstance, isCustom) =>
               url: `assets/img/custom_backgrounds/${themeInstance['background-image-full']}`,
             });
           }
-          document.body.classList.add(themeInstance.key);
+          document.getElementById('app').classList.add(themeInstance.key);
           global.core.platformMethod('updateSettings');
           analytics.trackEvent('theme', themeInstance.key);
         } catch (error) {

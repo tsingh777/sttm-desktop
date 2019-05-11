@@ -1,11 +1,11 @@
-body.win32:not(.webview) {
+#app.win32:not(.webview) {
   border: 1px solid #333;
 
   #titlebar {
     -webkit-app-region: drag;
     background-color: #333;
     color: #fff;
-    font-family: "Segoe UI", sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     font-size: 12px;
     height: 32px;
     left: 1px;

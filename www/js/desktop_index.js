@@ -12,4 +12,4 @@ global.core.themeEditor.init();
 // global.core.shareSync.init();
 global.platform.init();
 
-document.body.classList.add(process.platform);
+document.getElementById('app').classList.add(process.platform);

@@ -359,9 +359,9 @@ function updateViewerScale() {
       height: window.innerHeight,
     };
   }
-  const $fitInsideWindow = document.body.classList.contains('presenter-view')
+  const $fitInsideWindow = document.getElementById('app').classList.contains('presenter-view')
     ? document.getElementById('navigator')
-    : document.body;
+    : document.getElementById('app');
   let scale = 1;
   let previewStyles = '';
   let previewWinStyles = '';
@@ -413,7 +413,7 @@ function updateViewerScale() {
 
 function checkPresenterView() {
   const inPresenterView = store.getUserPref('app.layout.presenter-view');
-  const { classList } = document.body;
+  const { classList } = document.getElementById('app');
 
   classList.toggle('presenter-view', inPresenterView);
   classList.toggle('home', !inPresenterView);
@@ -448,7 +448,7 @@ global.platform.ipc.on('external-display', (e, args) => {
 });
 global.platform.ipc.on('remove-external-display', () => {
   delete global.externalDisplay;
-  document.body.classList.remove(['presenter-view', 'scale-viewer']);
+  document.getElementById('app').classList.remove(['presenter-view', 'scale-viewer']);
 });
 window.onresize = () => {
   updateViewerScale();
@@ -495,7 +495,7 @@ global.platform.ipc.on('cast-session-active', () => {
   global.webview.send('clear-apv');
   global.platform.ipc.send('clear-apv');
 
-  document.body.classList.remove('akhandpaatt');
+  document.getElementById('app').classList.remove('akhandpaatt');
   global.core.platformMethod('updateSettings');
   analytics.trackEvent('chromecast', 'start');
 });
@@ -535,7 +535,7 @@ module.exports = {
       rows,
       mode,
     };
-    if (document.body.classList.contains('livefeed')) {
+    if (document.getElementById('app').classList.contains('livefeed')) {
       showLinePayload.live = true;
     }
     global.platform.ipc.send('show-line', showLinePayload);

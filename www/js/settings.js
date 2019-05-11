@@ -10,24 +10,24 @@ const defaultPrefs = store.getDefaults().userPrefs;
 
 function updateMultipleChoiceSetting(key, val) {
   Object.keys(ldGet(settings, key)).forEach(optionToRemove => {
-    document.body.classList.remove(optionToRemove);
+    document.getElementById('app').classList.remove(optionToRemove);
   });
-  document.body.classList.add(val);
+  document.getElementById('app').classList.add(val);
   global.core.platformMethod('updateSettings');
   analytics.trackEvent('settings', key, val);
 }
 
 function updateDropdownSetting(key, id, val) {
   Object.keys(ldGet(settings, key)).forEach(optionToRemove => {
-    document.body.classList.remove(`${id}-${optionToRemove}`);
+    document.getElementById('app').classList.remove(`${id}-${optionToRemove}`);
   });
-  document.body.classList.add(`${id}-${val}`);
+  document.getElementById('app').classList.add(`${id}-${val}`);
   global.core.platformMethod('updateSettings');
   analytics.trackEvent('settings', key, val);
 }
 
 function updateCheckboxSetting(val) {
-  const { classList } = document.body;
+  const { classList } = document.getElementById('app');
   classList.toggle(val);
   global.core.platformMethod('updateSettings');
   analytics.trackEvent('settings', val, classList.contains(val));
@@ -37,9 +37,9 @@ function updateRangeSetting(key, val) {
   const option = ldGet(settings, key);
   const optionKey = key.split('.').pop();
   for (let i = option.min; i <= option.max; i += option.step) {
-    document.body.classList.remove(`${optionKey}-${i}`);
+    document.getElementById('app').classList.remove(`${optionKey}-${i}`);
   }
-  document.body.classList.add(`${optionKey}-${val}`);
+  document.getElementById('app').classList.add(`${optionKey}-${val}`);
   global.core.platformMethod('updateSettings');
   analytics.trackEvent('settings', optionKey, val);
 }
@@ -301,25 +301,29 @@ module.exports = {
           case 'switch':
             Object.keys(setting.options).forEach(option => {
               if (newUserPrefs[catKey][settingKey][option]) {
-                document.body.classList.add(option);
+                document.getElementById('app').classList.add(option);
               } else {
-                document.body.classList.remove(option);
+                document.getElementById('app').classList.remove(option);
               }
             });
             break;
           case 'radio':
             Object.keys(setting.options).forEach(optionToRemove => {
-              document.body.classList.remove(optionToRemove);
+              document.getElementById('app').classList.remove(optionToRemove);
             });
-            document.body.classList.add(newUserPrefs[catKey][settingKey]);
+            document.getElementById('app').classList.add(newUserPrefs[catKey][settingKey]);
             break;
 
           case 'dropdown':
             Object.keys(setting.options).forEach(dropdown => {
               Object.keys(setting.options[dropdown].options).forEach(option => {
-                document.body.classList.remove(`${settingKey}-${dropdown}-${option}`);
+                document
+                  .getElementById('app')
+                  .classList.remove(`${settingKey}-${dropdown}-${option}`);
                 if (newUserPrefs[catKey][settingKey][dropdown] === option) {
-                  document.body.classList.add(`${settingKey}-${dropdown}-${option}`);
+                  document
+                    .getElementById('app')
+                    .classList.add(`${settingKey}-${dropdown}-${option}`);
                 }
               });
             });
@@ -329,11 +333,11 @@ module.exports = {
             Object.keys(setting.options).forEach(optionKey => {
               const option = setting.options[optionKey];
               for (let i = option.min; i <= option.max; i += option.step) {
-                document.body.classList.remove(`${optionKey}-${i}`);
+                document.getElementById('app').classList.remove(`${optionKey}-${i}`);
               }
-              document.body.classList.add(
-                `${optionKey}-${newUserPrefs[catKey][settingKey][optionKey]}`,
-              );
+              document
+                .getElementById('app')
+                .classList.add(`${optionKey}-${newUserPrefs[catKey][settingKey][optionKey]}`);
             });
             break;
 
@@ -346,7 +350,7 @@ module.exports = {
   changeFontSize(iconType, operation) {
     const range = settings['slide-layout'].settings['font-sizes'].options[iconType];
     const existingSize = parseInt(store.getUserPref(`slide-layout.font-sizes.${iconType}`), 10);
-    document.body.classList.remove(`${iconType}-${existingSize}`);
+    document.getElementById('app').classList.remove(`${iconType}-${existingSize}`);
 
     let newSize;
 
@@ -355,7 +359,7 @@ module.exports = {
     } else if (operation === 'minus' && existingSize > range.min) {
       newSize = existingSize - range.step;
     }
-    document.body.classList.add(`${iconType}-${newSize}`);
+    document.getElementById('app').classList.add(`${iconType}-${newSize}`);
     store.setUserPref(`slide-layout.font-sizes.${iconType}`, newSize);
     global.platform.updateSettings();
     analytics.trackEvent('settings', `${iconType}`, newSize);
@@ -364,8 +368,8 @@ module.exports = {
     const catKey = 'slide-layout';
     const settingKey = 'fields';
     const option = `display-${type}`;
-    document.body.classList.toggle(option);
-    const newVal = document.body.classList.contains(option);
+    document.getElementById('app').classList.toggle(option);
+    const newVal = document.getElementById('app').classList.contains(option);
     store.setUserPref(`${catKey}.${settingKey}.${option}`, newVal);
     global.platform.updateSettings();
     analytics.trackEvent('settings', `${option}`, newVal);

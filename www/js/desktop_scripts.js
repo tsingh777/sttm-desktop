@@ -58,10 +58,10 @@ function windowAction(e) {
     case 'max-restore':
       if (win.isMaximized()) {
         win.unmaximize();
-        document.body.classList.remove('maximized');
+        document.getElementById('app').classList.remove('maximized');
       } else {
         win.maximize();
-        document.body.classList.add('maximized');
+        document.getElementById('app').classList.add('maximized');
       }
       break;
     case 'close':

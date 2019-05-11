@@ -1,4 +1,4 @@
-body.low-light {
+#app.low-light {
   background-color: #000;
 
   .gurbani {
@@ -59,7 +59,7 @@ $highlight-bg: #37474f;
 $highlight-text: #cfd8dc;
 
 .low-light {
-  color: $text-base;
+  color: $text-base !important;
 
   #toolbar,
   .bani-list {
@@ -87,10 +87,18 @@ $highlight-text: #cfd8dc;
     color: $text-base;
   }
 
-  .shortcut-tray { background: darken($bg-main, 10); }
-  .tray-item-icon { background: $text-bright; }
-  .tray-item-label { color: $bg-main; }
-  &.shortcut-tray-on .shortcut-toggle { background: darken($bg-main, 10); }
+  .shortcut-tray {
+    background: darken($bg-main, 10);
+  }
+  .tray-item-icon {
+    background: $text-bright;
+  }
+  .tray-item-label {
+    color: $bg-main;
+  }
+  &.shortcut-tray-on .shortcut-toggle {
+    background: darken($bg-main, 10);
+  }
 
   .nav-header-tab {
     color: $text-inactive;

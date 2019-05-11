@@ -241,9 +241,9 @@ button {
   }
 }
 
-body.searchResults_transliteration .search-result .transliteration,
-body.searchResults_translationEnglish .search-result .translation.english,
-body.searchResults_meta .search-result .meta {
+#app.searchResults_transliteration .search-result .transliteration,
+#app.searchResults_translationEnglish .search-result .translation.english,
+#app.searchResults_meta .search-result .meta {
   display: block;
 }
 

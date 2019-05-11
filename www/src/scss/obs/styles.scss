@@ -27,11 +27,11 @@
 }
 
 html,
-body {
+#app {
   height: 100%;
 }
 
-body {
+#app {
   position: relative;
 }
 
@@ -66,7 +66,7 @@ body {
 }
 
 .o-teeka {
-  font-family: "gurbaniakhar";
+  font-family: 'gurbaniakhar';
 }
 
 .o-transliteration,

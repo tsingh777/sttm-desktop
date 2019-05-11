@@ -328,7 +328,7 @@ const announcementSlideButton = h(
 );
 
 // On href clicks, open the link in actual browser
-document.body.addEventListener('click', e => {
+document.getElementById('app').addEventListener('click', e => {
   const { target } = e;
   const link = target.href;
   if (target.href) {
@@ -373,7 +373,7 @@ module.exports = {
     search.activateNavLink('settings', true);
     search.activateNavPage('session', { id: 'settings', label: 'Settings' });
 
-    const isPresenterView = document.body.classList.contains('presenter-view');
+    const isPresenterView = document.getElementById('app').classList.contains('presenter-view');
     const settingsViewType = isPresenterView ? 'from_presenter_view' : 'not_from_presenter_view';
     const settingsClickSource = fromMainMenu ? 'menu_settings' : 'hamburger_settings';
     analytics.trackEvent(settingsClickSource, 'click', settingsViewType);
