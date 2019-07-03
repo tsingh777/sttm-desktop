@@ -8,12 +8,11 @@ const copy = require('copy-to-clipboard');
 const isOnline = require('is-online');
 const strings = require('./strings');
 
-
 const { randomShabad } = require('./banidb');
 const settings = require('./settings');
 const tingle = require('./vendor/tingle');
 const search = require('./search');
-const { tryConnection } = require('./share-sync');
+const { tryConnection, onEnd } = require('./share-sync');
 
 const { store } = electron.remote.require('./app');
 const analytics = electron.remote.getGlobal('analytics');
@@ -320,6 +319,12 @@ const createSyncModal = (content, code) => {
       copy(code);
       syncModal.close();
       syncModal.destroy();
+    });
+    syncModal.addFooterBtn('End Session', 'tingle-btn tingle-btn--primary', () => {
+      onEnd(code);
+      syncModal.close();
+      syncModal.destroy();
+      document.getElementById('remote-sync-icon').style.color = '#424242';
     });
   }
 
