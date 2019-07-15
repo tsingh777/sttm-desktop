@@ -326,6 +326,7 @@ const createSyncModal = (content, code) => {
       syncModal.destroy();
       document.getElementById('remote-sync-icon').style.color = '#424242';
     });
+    global.controller.sendText(code);
   }
 
   // set content
