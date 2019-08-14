@@ -7,7 +7,7 @@ const { store } = remote.require('./app');
 const analytics = remote.getGlobal('analytics');
 const { updateCeremonyThemeTiles } = require('./theme_editor');
 
-const toolbarItems = ['sunder-gutka', 'ceremonies'];
+const toolbarItems = ['sunder-gutka', 'ceremonies', 'sync-button'];
 const navLinks = require('./search');
 
 const nitnemBanis = [2, 4, 6, 9, 10, 20, 21, 23];
@@ -60,6 +60,18 @@ const switchFactory = (id, label, inputId, clickEvent, defaultValue = true) =>
       }),
     ]),
   ]);
+
+const syncContent = h('div.sync-content', [
+  h('div.left-sync-content'),
+  h('div.right-sync-content', [
+    h('div.sync-code-label', 'Your unique sync code is'),
+    h('div.sync-code-num', '111-111'),
+    h(
+      'div.sync-code-desc',
+      'Share this code with anyone using a mobile device* and they can open their browser, go to sttm.co/sync and enter the code above to follow along with the desktop app on their device',
+    ),
+  ]),
+]);
 
 const translitSwitch = h('div.translit-switch', [
   h('span', 'Abc'),
@@ -242,6 +254,8 @@ module.exports = {
     toolbarItems.forEach(toolbarItem => {
       $toolbar.appendChild(toolbarItemFactory(toolbarItem));
     });
+
+    document.querySelector('.sync-dialogue').appendChild(syncContent);
 
     $baniList.querySelector('header').appendChild(translitSwitch);
     $baniExtras.appendChild(baniGroupFactory('nitnem banis'));
