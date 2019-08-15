@@ -62,7 +62,10 @@ const switchFactory = (id, label, inputId, clickEvent, defaultValue = true) =>
   ]);
 
 const syncContent = h('div.sync-content', [
-  h('div.left-sync-content'),
+  h('div.left-sync-content', [
+    h('div.left-sync-icon'),
+    h('button.button.left-sync-button', 'Watch Video'),
+  ]),
   h('div.right-sync-content', [
     h('div.sync-code-label', 'Your unique sync code is'),
     h('div.sync-code-num', '111-111'),
@@ -70,6 +73,7 @@ const syncContent = h('div.sync-content', [
       'div.sync-code-desc',
       'Share this code with anyone using a mobile device* and they can open their browser, go to sttm.co/sync and enter the code above to follow along with the desktop app on their device',
     ),
+    h('div.button-wrap', [h('button.button', 'Copy Code'), h('button.button', 'Present')]),
   ]),
 ]);
 
