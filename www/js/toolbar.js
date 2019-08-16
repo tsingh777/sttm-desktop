@@ -1,7 +1,12 @@
 const h = require('hyperscript');
 const { remote } = require('electron');
 const anvaad = require('anvaad-js');
+const copy = require('copy-to-clipboard');
+const isOnline = require('is-online');
 const banidb = require('./banidb');
+const { tryConnection } = require('./share-sync');
+
+let code = '...';
 
 const { store } = remote.require('./app');
 const analytics = remote.getGlobal('analytics');
@@ -68,12 +73,23 @@ const syncContent = h('div.sync-content', [
   ]),
   h('div.right-sync-content', [
     h('div.sync-code-label', 'Your unique sync code is'),
-    h('div.sync-code-num', '111-111'),
+    h('div.sync-code-num', code),
     h(
       'div.sync-code-desc',
       'Share this code with anyone using a mobile device* and they can open their browser, go to sttm.co/sync and enter the code above to follow along with the desktop app on their device',
     ),
-    h('div.button-wrap', [h('button.button', 'Copy Code'), h('button.button', 'Present')]),
+    h('div.button-wrap', [
+      h(
+        'button.button',
+        {
+          onclick: () => {
+            copy(code);
+          },
+        },
+        'Copy Code',
+      ),
+      h('button.button', 'Present'),
+    ]),
   ]),
 ]);
 
@@ -249,6 +265,18 @@ const toolbarItemFactory = toolbarItem =>
     },
   });
 
+const remoteSyncInit = async () => {
+  const onlineVal = await isOnline();
+  if (onlineVal) {
+    code = await tryConnection();
+    if (code) {
+      document.querySelector('.sync-code-num').innerText = code;
+    }
+  } else {
+    document.querySelector('.sync-code-num').innerText = '...';
+  }
+};
+
 module.exports = {
   init() {
     document.querySelector('.focus-overlay').addEventListener('click', () => {
@@ -260,6 +288,8 @@ module.exports = {
     });
 
     document.querySelector('.sync-dialogue').appendChild(syncContent);
+
+    remoteSyncInit();
 
     $baniList.querySelector('header').appendChild(translitSwitch);
     $baniExtras.appendChild(baniGroupFactory('nitnem banis'));
