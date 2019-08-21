@@ -44,6 +44,18 @@ const toggleOverlayUI = (toolbarItem, show) => {
   });
 };
 
+const remoteSyncInit = async () => {
+  const onlineVal = await isOnline();
+  if (onlineVal) {
+    code = await tryConnection();
+    if (code) {
+      document.querySelector('.sync-code-num').innerText = code;
+    }
+  } else {
+    document.querySelector('.sync-code-num').innerText = '...';
+  }
+};
+
 // factories
 const navigatorHeaderFactory = (id, content, lang) =>
   h(`header.toolbar-nh.navigator-header#${id}`, h(`span.${lang}`, content));
@@ -283,18 +295,6 @@ const toolbarItemFactory = toolbarItem =>
       }
     },
   });
-
-const remoteSyncInit = async () => {
-  const onlineVal = await isOnline();
-  if (onlineVal) {
-    code = await tryConnection();
-    if (code) {
-      document.querySelector('.sync-code-num').innerText = code;
-    }
-  } else {
-    document.querySelector('.sync-code-num').innerText = '...';
-  }
-};
 
 module.exports = {
   init() {
