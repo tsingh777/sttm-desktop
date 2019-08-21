@@ -4,9 +4,10 @@ const anvaad = require('anvaad-js');
 const copy = require('copy-to-clipboard');
 const isOnline = require('is-online');
 const banidb = require('./banidb');
-const { tryConnection } = require('./share-sync');
+const { tryConnection, onEnd } = require('./share-sync');
 
 let code = '...';
+let isPresenting = false;
 
 const { store } = remote.require('./app');
 const analytics = remote.getGlobal('analytics');
@@ -80,7 +81,7 @@ const syncContent = h('div.sync-content', [
     ),
     h('div.button-wrap', [
       h(
-        'button.button',
+        'button.button.copy-code-btn',
         {
           onclick: () => {
             copy(code);
@@ -88,7 +89,25 @@ const syncContent = h('div.sync-content', [
         },
         'Copy Code',
       ),
-      h('button.button', 'Present'),
+      h(
+        'button.button.present-btn',
+        {
+          onclick: () => {
+            if (isPresenting) {
+              isPresenting = false;
+              onEnd(code);
+              document.querySelector('.sync-code-num').innerText = '...';
+            } else {
+              isPresenting = true;
+              remoteSyncInit();
+            }
+            document.querySelector('.present-btn').innerText = isPresenting
+              ? 'Stop Session'
+              : 'Present';
+          },
+        },
+        isPresenting ? 'Stop Session' : 'Present',
+      ),
     ]),
   ]),
 ]);
@@ -288,8 +307,6 @@ module.exports = {
     });
 
     document.querySelector('.sync-dialogue').appendChild(syncContent);
-
-    remoteSyncInit();
 
     $baniList.querySelector('header').appendChild(translitSwitch);
     $baniExtras.appendChild(baniGroupFactory('nitnem banis'));
