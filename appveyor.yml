@@ -1,9 +1,7 @@
 os: Visual Studio 2017
 branches:
   only:
-    - release
-    - master
-    - dev
+    - tsingh/test-appveyor
 cache:
   - '%USERPROFILE%\.electron'
 environment:
@@ -37,4 +35,4 @@ version: '{build}'
 shallow_clone: false
 clone_depth: 50
 test_script:
-  - npm run test && node ./packaging/release --branch=%APPVEYOR_REPO_BRANCH% --platform=win && node ./packaging/release --branch=%APPVEYOR_REPO_BRANCH% --platform=win32
+  - npm run test
