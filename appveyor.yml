@@ -13,10 +13,10 @@ environment:
   matrix:
     - nodejs_version: 8
 install:
-  - ps: $fileContent = "-----BEGIN RSA PRIVATE KEY-----`n"
-  - ps: $fileContent += $env:priv_key.Replace(' ', "`n")
-  - ps: $fileContent += "`n-----END RSA PRIVATE KEY-----`n"
-  - ps: Set-Content packaging\id_rsa $fileContent
+  #  - ps: $fileContent = "-----BEGIN RSA PRIVATE KEY-----`n"
+  #  - ps: $fileContent += $env:priv_key.Replace(' ', "`n")
+  #  - ps: $fileContent += "`n-----END RSA PRIVATE KEY-----`n"
+  #  - ps: Set-Content packaging\id_rsa $fileContent
   - ps: Install-Product node $env:nodejs_version
   - set CI=true
   - appveyor DownloadFile https://github.com/KhalisFoundation/sttm-desktop/blob/master/assets/Bonjour64.msi?raw=true
