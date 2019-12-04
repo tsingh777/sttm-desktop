@@ -1,16 +1,47 @@
 ## New Updates
 
+### 6.2 - _November 26, 2019_
 
-### 6.0 - _November 7, 2019_
+### Improved:
+
+- Bani Overlay has been revamped! We have enhanced the UI to make things a little cleaner and less cluttered
+- The SikhiToTheMax logo has been added to Bani Overlay as default and can be turned off with the new "Logo" toggle
+- The "Show Annoucements in Overlay" toggle has been moved to the Bani Overlay toolbar
+- The Dhan Guru Nanak Gurpurab theme has been removed. Stay tuned for more special themes in the future! 
+ ![](./assets/img/help_images/desktop-new-overlay.png)
+
+
+
+</br>
+
+**Have a question or an idea for a new feature? Send us your feedback at [sttm.co/feedback](https://www.sttm.co/feedback).**
+
+</br>
+
+### 6.1 - _November 14, 2019_
+
+### Improved:
+
+- We've added a dedicated font size slider for announcements (includes Mool Mantra, Waheguru, Dhan Guru, and Sangat Sync slides as well)
+- Fixed various UI bugs relating to Sangat Sync
+
+### 6.0 - _November 9, 2019_
 
 ### New:
 
 - Sangat Sync! An amazing new way to have sangat follow along what is being shown on SikhiToTheMax. Just visit sttm.co/sync and enter the pairing code to get started. Note: This feature is still in beta, please send us your feedback at sttm.co/feedback! 
  ![](./assets/img/help_images/desktop-sangat-sync.png)
  
+ 
+ - Special new theme! We have added a new theme to celebrate Guru Nanak Dev Jee's 550th Gurpurab! 
+  ![](./assets/img/help_images/desktop-550-theme.png)
+ 
+ 
 - Copy and paste! You can now copy a line from within SikhiToTheMax and paste it outside the app! Click a line from the shabad, and press CTRL (or CMD for Mac) + C to copy it. It will copy everything that is being shown on the slide, including translations! 
 
-
+<br/>  
+<details><summary>See previous updates...</summary>
+  
 ### 5.3.4 - _September 18, 2019_
      
 ### Improved:
@@ -20,15 +51,12 @@
 - Fixed a bug that would cause the last line of Anand Sahib (Bhog) not to display properly
 - Fixed a bug that would cause a white screen to flash upon app launch
 - Fixed a bug that caused the spacebar not to function properly
-
-<br/>  
-<details><summary>See previous updates...</summary>
   
 ### 5.3.3 - _190822_
 
 ### Improved:
 
-- Fixed a bug when using BaniOverlay with longer Banis/Shabads
+- Fixed a bug when using Bani Overlay with longer Banis/Shabads
 
 ### 5.3.2 - _190806_
 

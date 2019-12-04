@@ -8,6 +8,7 @@ const uuid = require('uuid/v4');
 const op = require('openport');
 const Store = require('./www/js/store.js');
 const defaultPrefs = require('./www/js/defaults.json');
+const themes = require('./www/js/themes.json');
 const Analytics = require('./analytics');
 
 // Are we packaging for a platform's app store?
@@ -33,6 +34,12 @@ const store = new Store({
 const appVersion = app.getVersion();
 
 const overlayCast = store.getUserPref('app.overlay-cast');
+
+// Reset to default theme if theme not found
+const currentTheme = themes.find(theme => theme.key === store.getUserPref('app.theme'));
+if (currentTheme === undefined) {
+  store.setUserPref('app.theme', themes[0].key);
+}
 
 let mainWindow;
 let viewerWindow = false;
@@ -81,14 +88,18 @@ function openSecondaryWindow(windowName) {
     openWindow[0].show();
   } else {
     window.obj = new BrowserWindow({
-      width: 725,
-      height: 800,
+      width: 1366,
+      height: 768,
       show: false,
     });
     window.obj.webContents.on('did-finish-load', () => {
       window.obj.show();
+      window.obj.focus();
       if (window.show) {
         window.show();
+      }
+      if (window.focus) {
+        window.focus();
       }
     });
     window.obj.loadURL(window.url);
@@ -368,6 +379,9 @@ app.on('ready', () => {
 
     if (lastSeen !== appVersion || (lastSeenCount < maxChangeLogSeenCount && !limitChangeLog)) {
       openSecondaryWindow('changelogWindow');
+      if (lastSeen !== appVersion) {
+        store.set('changelog-seen-count', 1);
+      }
     }
     if (!viewerWindow) {
       createViewer();
@@ -536,5 +550,6 @@ module.exports = {
   checkForUpdates,
   autoUpdater,
   store,
+  themes,
   appstore,
 };
