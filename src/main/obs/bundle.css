@@ -1,0 +1,257 @@
+@font-face {
+  font-family: 'gurbaniakhar';
+  font-style: normal;
+  font-weight: normal;
+  src: url('gurbaniakhartrue-webfont.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'gurbaniakhar';
+  font-style: normal;
+  font-weight: bold;
+  src: url('gurbaniakharheavytrue-webfont.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'gurbaniakharthick';
+  font-style: normal;
+  font-weight: normal;
+  src: url('gurbaniakharthicktrue-webfont.ttf') format('truetype');
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  position: relative;
+}
+.overlay-wrapper {
+  position: relative;
+  width: 100%;
+}
+.gurmukhi {
+  font-family: 'gurbaniakhar';
+}
+.content-bar {
+  color: #f1c40f;
+  left: 0;
+  margin: auto;
+  padding-left: 3vw;
+  padding-right: 3vw;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+.content-top,
+.content-bottom {
+  background: rgba(44, 62, 80, 0.9);
+  width: 100%;
+}
+.o-gurbani {
+  font-family: 'gurbaniakharthick';
+}
+.o-teeka {
+  font-family: 'gurbaniakhar';
+}
+.o-transliteration,
+.o-teeka {
+  display: none;
+}
+.o-transliteration,
+.o-translation {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.layout-top .content-top {
+  padding-top: 3vh;
+}
+.layout-top .logo-wrapper {
+  bottom: 2vh;
+}
+.layout-bottom .overlay-wrapper {
+  bottom: 0;
+  position: absolute;
+}
+.layout-bottom .content-bottom {
+  padding-bottom: 3vh;
+}
+.layout-bottom .logo-wrapper {
+  top: 2vh;
+}
+.layout-split .overlay-wrapper {
+  height: 100%;
+}
+.layout-split .content-bars-bottom {
+  bottom: 0;
+  padding-right: 16vw;
+  position: absolute;
+  width: 100vw;
+}
+.layout-split .content-top {
+  padding-top: 3vh;
+}
+.layout-split .content-bottom {
+  position: static;
+  padding-bottom: 3vh;
+}
+.layout-split .o-teeka,
+.layout-split .o-transliteration {
+  display: block;
+}
+.layout-split .logo-wrapper {
+  border-radius: 0;
+  bottom: 0;
+  height: 100%;
+  position: absolute;
+  right: 0;
+}
+.content-top.never-forget,
+.content-bottom.never-forget {
+  background: #000;
+  color: #f00;
+}
+.content-top.never-forget .o-translation,
+.content-top.never-forget .o-teeka,
+.content-top.never-forget .o-gurbani,
+.content-top.never-forget .o-transliteration,
+.content-bottom.never-forget .o-translation,
+.content-bottom.never-forget .o-teeka,
+.content-bottom.never-forget .o-gurbani,
+.content-bottom.never-forget .o-transliteration {
+  color: #f00;
+}
+.content-top.khalsa-gold,
+.content-bottom.khalsa-gold {
+  background: #58330a;
+  color: #ffba00;
+}
+.content-top.khalsa-gold .o-translation,
+.content-top.khalsa-gold .o-teeka,
+.content-top.khalsa-gold .o-gurbani,
+.content-top.khalsa-gold .o-transliteration,
+.content-bottom.khalsa-gold .o-translation,
+.content-bottom.khalsa-gold .o-teeka,
+.content-bottom.khalsa-gold .o-gurbani,
+.content-bottom.khalsa-gold .o-transliteration {
+  color: #ffba00;
+}
+.content-top.baagi-blue,
+.content-bottom.baagi-blue {
+  background: #274f69;
+  color: #fff;
+}
+.content-top.baagi-blue .o-translation,
+.content-top.baagi-blue .o-teeka,
+.content-top.baagi-blue .o-gurbani,
+.content-bottom.baagi-blue .o-translation,
+.content-bottom.baagi-blue .o-teeka,
+.content-bottom.baagi-blue .o-gurbani {
+  color: #fff;
+}
+.content-top.baagi-blue .o-transliteration,
+.content-bottom.baagi-blue .o-transliteration {
+  color: #a0d5fe;
+}
+.content-top.khalsa-rush,
+.content-bottom.khalsa-rush {
+  background: #ffa61a;
+  color: #071f77;
+}
+.content-top.khalsa-rush .o-translation,
+.content-top.khalsa-rush .o-teeka,
+.content-top.khalsa-rush .o-gurbani,
+.content-top.khalsa-rush .o-transliteration,
+.content-bottom.khalsa-rush .o-translation,
+.content-bottom.khalsa-rush .o-teeka,
+.content-bottom.khalsa-rush .o-gurbani,
+.content-bottom.khalsa-rush .o-transliteration {
+  color: #071f77;
+}
+.content-top.moody-blue,
+.content-bottom.moody-blue {
+  background: #2d73a7;
+  color: #fff;
+}
+.content-top.moody-blue .o-translation,
+.content-top.moody-blue .o-teeka,
+.content-top.moody-blue .o-gurbani,
+.content-top.moody-blue .o-transliteration,
+.content-bottom.moody-blue .o-translation,
+.content-bottom.moody-blue .o-teeka,
+.content-bottom.moody-blue .o-gurbani,
+.content-bottom.moody-blue .o-transliteration {
+  color: #fff;
+}
+.content-top.a-new-day,
+.content-bottom.a-new-day {
+  background: #97d6f7;
+  color: #0e2654;
+}
+.content-top.a-new-day .o-translation,
+.content-top.a-new-day .o-teeka,
+.content-bottom.a-new-day .o-translation,
+.content-bottom.a-new-day .o-teeka {
+  color: #003a8c;
+}
+.content-top.a-new-day .o-gurbani,
+.content-top.a-new-day .o-transliteration,
+.content-bottom.a-new-day .o-gurbani,
+.content-bottom.a-new-day .o-transliteration {
+  color: #0e2654;
+}
+.content-top.black-and-blue,
+.content-bottom.black-and-blue {
+  background: #000;
+  color: #fff;
+}
+.content-top.black-and-blue .o-gurbani,
+.content-top.black-and-blue .o-transliteration,
+.content-bottom.black-and-blue .o-gurbani,
+.content-bottom.black-and-blue .o-transliteration {
+  color: #fff;
+}
+.content-top.black-and-blue .o-teeka,
+.content-top.black-and-blue .o-translation,
+.content-bottom.black-and-blue .o-teeka,
+.content-bottom.black-and-blue .o-translation {
+  color: #a3eafd;
+}
+.content-top.floral,
+.content-bottom.floral {
+  background: #f5b7d1;
+  color: #460a1e;
+}
+.content-top.floral .o-gurbani,
+.content-top.floral .o-transliteration,
+.content-bottom.floral .o-gurbani,
+.content-bottom.floral .o-transliteration {
+  color: #460a1e;
+}
+.content-top.floral .o-teeka,
+.content-top.floral .o-translation,
+.content-bottom.floral .o-teeka,
+.content-bottom.floral .o-translation {
+  color: #821d3e;
+}
+.logo-wrapper {
+  align-items: center;
+  background: #fff;
+  border-radius: 5px;
+  display: inline-flex;
+  justify-content: center;
+  padding: 2vh 2vw;
+  position: fixed;
+  right: 2vh;
+}
+.logo-wrapper .sttm-logo {
+  width: 12vw;
+}
+.logo-off .content-bars-bottom {
+  padding-right: 0;
+}
+.logo-off .logo-wrapper {
+  display: none;
+}

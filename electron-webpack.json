@@ -1,0 +1,10 @@
+{
+  "commonSourceDirectory": "src/common",
+  "title": true,
+  "main": {
+    "sourceDirectory": "src/main"
+  },
+  "renderer": {
+    "sourceDirectory": "src/renderer"
+  }
+}
