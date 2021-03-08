@@ -18,6 +18,7 @@ $viewer-padding: 30px;
     .control-item#larivaar-assist-type {
       display: none;
 
+
       .larivaar-true & {
         display: flex;
       }
@@ -309,6 +310,17 @@ h2 {
   .transliteration-font-size-#{$i} .transliteration,
   .announcements-font-size-#{$i} .announcements,
   .teeka-font-size-#{$i} .teeka {
+    font-size: #{$i}vh;
+  }
+}
+
+/* ***** FONT SIZES ***** */
+@for $i from 1 through 20 {
+  .gurbani-#{$i} .gurbani,
+  .translation-#{$i} .translation,
+  .transliteration-#{$i} .transliteration,
+  .announcements-#{$i} .announcements,
+  .teeka-#{$i} .teeka {
     font-size: #{$i}vh;
   }
 }

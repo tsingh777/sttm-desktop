@@ -256,7 +256,7 @@ function showChangelog() {
 function createViewer(ipcData) {
   const isExternal = checkForExternalDisplay();
 
-  if (isExternal) {
+  if (true) {
     viewerWindow = new BrowserWindow({
       width: 800,
       height: 400,
@@ -274,6 +274,7 @@ function createViewer(ipcData) {
     });
     viewerWindow.loadURL(`file://${__dirname}/www/viewer.html`);
     viewerWindow.webContents.on('did-finish-load', () => {
+      viewerWindow.webContents.openDevTools();
       viewerWindow.show();
       const [width, height] = viewerWindow.getSize();
       mainWindow.webContents.send('external-display', {

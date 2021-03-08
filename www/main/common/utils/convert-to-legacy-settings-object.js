@@ -1,4 +1,4 @@
-const convertToLegacySettingsObj = newObject => {
+export const convertToLegacySettingsObj = newObject => {
   const legacyObj = {
     toolbar: {
       'gurbani-options': {
@@ -41,4 +41,29 @@ const convertToLegacySettingsObj = newObject => {
   return legacyObj;
 };
 
-export default convertToLegacySettingsObj;
+const legacyKeyMap = {
+  displayVishraams: 'toolbar.gurbani-options.display-visraams',
+  vishraamType: 'toolbar.vishraam.vishraam-options',
+  vishraamSource: 'toolbar.vishraam.vishraam-source',
+  translationVisibility: 'slide-layout.fields.display-translation',
+  transliterationVisibility: 'slide-layout.fields.display-transliteration',
+  teekaVisibility: 'slide-layout.fields.display-teeka',
+  displayNextLine: 'slide-layout.fields.display-next-line',
+  announcementsFontSize: 'slide-layout.font-sizes.announcements',
+  gurbaniFontSize: 'slide-layout.font-sizes.gurbani',
+  translationFontSize: 'slide-layout.font-sizes.translation',
+  transliterationFontSize: 'slide-layout.font-sizes.transliteration',
+  teekaFontSize: 'slide-layout.font-sizes.teeka',
+  translationLanguage: 'slide-layout.language-settings.translation-language',
+  transliterationLanguage: 'slide-layout.language-settings.transliteration-language',
+  larivaarAssistType: 'slide-layout.larivaar-settings.assist-type',
+  larivaar: 'slide-layout.display-options.larivaar',
+  larivaarAssist: 'slide-layout.display-options.larivaar-assist',
+  leftAlign: 'slide-layout.display-options.left-align',
+  autoplayDelay: 'slide-layout.autoplay-options.autoplayTimer',
+};
+
+export const convertKeyToLegacySettingsObjKey = key => {
+  return legacyKeyMap.hasOwnProperty(key) ? legacyKeyMap[key] : '';
+};
+

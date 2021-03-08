@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { useStoreState, useStoreActions } from 'easy-peasy';
 
 import { Switch, Checkbox } from '../../common/sttm-ui';
+import { convertKeyToLegacySettingsObjKey } from '../../common/utils';
 
 const { remote } = require('electron');
 
-const { i18n } = remote.require('./app');
+const { i18n, store } = remote.require('./app');
 
 const Setting = ({ settingObj, stateVar, stateFunction }) => {
   const { title } = settingObj;
@@ -17,11 +18,17 @@ const Setting = ({ settingObj, stateVar, stateFunction }) => {
   const handleInputChange = event => {
     const value = event.target ? event.target.value : event;
     userSettingsActions[stateFunction](value);
+    console.log(stateVar);
+    store.setUserPref(convertKeyToLegacySettingsObjKey(stateVar), value);
+    global.core.platformMethod('updateSettings');
   };
 
   const handleCheckboxChange = event => {
     const value = event.target.checked;
     userSettingsActions[stateFunction](value);
+    console.log(userSettings);
+    store.setUserPref(convertKeyToLegacySettingsObjKey(stateVar), value);
+    global.core.platformMethod('updateSettings');
   };
 
   let settingDOM;

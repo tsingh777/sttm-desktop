@@ -45,8 +45,10 @@ module.exports = {
             Object.keys(setting.options).forEach(dropdown => {
               Object.keys(setting.options[dropdown].options).forEach(option => {
                 document.body.classList.remove(`${settingKey}-${dropdown}-${option}`);
-                if (newUserPrefs[catKey][settingKey][dropdown] === option) {
-                  document.body.classList.add(`${settingKey}-${dropdown}-${option}`);
+                if (newUserPrefs[catKey] && newUserPrefs[catKey][settingKey] &&  newUserPrefs[catKey][settingKey][dropdown]) {
+                  if (newUserPrefs[catKey][settingKey][dropdown] === option) {
+                    document.body.classList.add(`${settingKey}-${dropdown}-${option}`);
+                  }
                 }
               });
             });
@@ -58,9 +60,11 @@ module.exports = {
               for (let i = option.min; i <= option.max; i += option.step) {
                 document.body.classList.remove(`${optionKey}-${i}`);
               }
-              document.body.classList.add(
-                `${optionKey}-${newUserPrefs[catKey][settingKey][optionKey]}`,
-              );
+              if (newUserPrefs[catKey] && newUserPrefs[catKey][settingKey] &&  newUserPrefs[catKey][settingKey][optionKey]){
+                document.body.classList.add(
+                  `${optionKey}-${newUserPrefs[catKey][settingKey][optionKey]}`,
+                );
+              }
             });
             break;
 
